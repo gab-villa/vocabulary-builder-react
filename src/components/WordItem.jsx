@@ -1,11 +1,14 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 
-export const WordItem = () =>
+export const WordItem = ({itemData}) =>
 {
     return (<>
         <ListGroup.Item>
-            word<Badge bg="primary">lvl</Badge>
+            {itemData.weng}
+            <Badge bg="primary">
+                {itemData.level}
+            </Badge>
         </ListGroup.Item>
     </>);
 }
