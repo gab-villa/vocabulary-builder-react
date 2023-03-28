@@ -1,5 +1,5 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import { WordItem } from "./WordItem";
+import { WordItem } from "./WordItem.jsx";
 //import { useState } from "react";
 
 export const WordList = ({wordList}) =>
