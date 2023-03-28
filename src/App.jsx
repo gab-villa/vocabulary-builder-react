@@ -7,18 +7,30 @@ import { LayoutRow} from "./components/LayoutRow.jsx";
 
 import React,{useState,useEffect} from 'react';
 const PATH_TO_WORDLIST = "WordList-21-03-2023.json";
-
-const TAM_WORDLIST = 50;
+const TAM_WORDLIST = 10;
 const NUMBER_OF_OPTIONS = 3;
+
 function App() {
   const [dataList, setDataList] = useState();
-  const [index, setIndex] = useState(0);
 
-  function handleIndexClick()
+  const handleOptClick = {};
   {
-    setIndex(index+1);
+    handleOptClick.ans = () =>
+    {
+      console.log("opc correcta");
+      let temp = dataList.slice();
+      temp.shift();
+      setDataList(temp);
+    }
+    handleOptClick.wrong = () =>
+    {
+      console.log("opc equivocada");
+      let temp = dataList.slice();
+      let delElem = temp.shift();
+      temp.push(delElem);
+      setDataList(temp);
+    }
   }
-
 
   useEffect(() =>{
     function getArrOfRandomInt(cantInt, max)
@@ -35,17 +47,6 @@ function App() {
       }
       return randIntArray;
     }
-    /*
-    function shuffle(array){
-      let i, j, temp;
-      for (i = array.length - 1; i > 0; i--) {
-        j = Math.round(Math.random() * (i + 1));
-        temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-      }
-      return array;
-    }*/
     async function getData(dataList)
     {
         const res = await fetch(PATH_TO_WORDLIST, {
@@ -58,8 +59,8 @@ function App() {
 
         const tamArrRand = TAM_WORDLIST * NUMBER_OF_OPTIONS;
         let arrRandomIndex = getArrOfRandomInt(tamArrRand,data.length-1);
-        let arrTemp = [[],[],[]];
-        /*
+        let arrTemp = [];
+        
         for(let i = 0;i < tamArrRand;i += NUMBER_OF_OPTIONS)
         {	
           arrTemp.push({
@@ -67,19 +68,8 @@ function App() {
             wr1: data[arrRandomIndex[i+1]], 
             wr2: data[arrRandomIndex[i+2]] 
           });
-        }*/
-        for(let i = 0;i < NUMBER_OF_OPTIONS;++i)
-        {
-          for(let j = 0;j < TAM_WORDLIST;++j)
-          {
-            arrTemp[i].push(data[arrRandomIndex[j+TAM_WORDLIST*i]]);
-          }
         }
-        setDataList({
-          ans: arrTemp[0],
-          wr1: arrTemp[1],
-          wr2: arrTemp[2]
-        });
+        setDataList(arrTemp);
     }
     getData();
   }, [])
@@ -90,10 +80,11 @@ function App() {
   return (
     <LayoutContainer>
       <LayoutRow>
-        <WordList wordList={dataList.ans}/>
+        <WordList wordList={dataList.slice(0,3)}/>
       </LayoutRow>
       <LayoutRow>
-        <OptionsOfQuestion optList={dataList}/>
+        <OptionsOfQuestion optList={dataList[0]}
+                           onOptClick={handleOptClick}/>
       </LayoutRow>
     </LayoutContainer>
   );
