@@ -6,8 +6,7 @@ import { LayoutRow} from "./components/LayoutRow.jsx";
 // app should be used for auth and routing
 
 import React,{useState,useEffect} from 'react';
-const PATH_TO_WORDLIST = "./WordList-21-03-2023.json";
-const myRequest = new Request(PATH_TO_WORDLIST);
+const PATH_TO_WORDLIST = "WordList-21-03-2023.json";
 
 const TAM_WORDLIST = 50;
 const NUMBER_OF_OPTIONS = 3;
@@ -49,7 +48,12 @@ function App() {
     }*/
     async function getData(dataList)
     {
-        const res = await fetch(myRequest);
+        const res = await fetch(PATH_TO_WORDLIST, {
+          headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+           }
+        });
         const data = await res.json();
 
         const tamArrRand = TAM_WORDLIST * NUMBER_OF_OPTIONS;
