@@ -1,4 +1,9 @@
 import { Layout } from "./components/Layout.jsx";
+import { WordList} from "./components/WordList.jsx";
+import { OptionsOfQuestion } from "./components/OptionsOfQuestion.jsx";
+import { LayoutContainer} from "./components/LayoutContainer.jsx";
+import { LayoutRow} from "./components/LayoutRow.jsx";
+
 // app should be used for auth and routing
 
 import React,{useState,useEffect} from 'react';
@@ -7,7 +12,14 @@ const TAM_WORDLIST = 50;
 const NUMBER_OF_OPTIONS = 3;
 function App() {
   const [dataList, setDataList] = useState();
-  
+  const [index, setIndex] = useState(0);
+
+  function handleIndexClick()
+  {
+    setIndex(index+1);
+  }
+
+
   useEffect(() =>{
     function getArrOfRandomInt(cantInt, max)
     {
@@ -72,9 +84,14 @@ function App() {
     return null;
   }
   return (
-    <div className="App">
-      <Layout dataList={dataList}/>
-    </div>
+    <LayoutContainer>
+      <LayoutRow>
+        <WordList wordList={dataList.ans}/>
+      </LayoutRow>
+      <LayoutRow>
+        <OptionsOfQuestion optList={dataList}/>
+      </LayoutRow>
+    </LayoutContainer>
   );
 }
 
