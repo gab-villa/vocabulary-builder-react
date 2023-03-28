@@ -6,7 +6,7 @@ import { LayoutRow} from "./components/LayoutRow.jsx";
 // app should be used for auth and routing
 
 import React,{useState,useEffect} from 'react';
-const PATH_TO_WORDLIST = 'WordList-21-03-2023.json';
+const PATH_TO_WORDLIST = './src/store/WordList-21-03-2023.json';
 const TAM_WORDLIST = 50;
 const NUMBER_OF_OPTIONS = 3;
 function App() {
