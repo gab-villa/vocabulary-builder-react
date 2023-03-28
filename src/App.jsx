@@ -1,4 +1,3 @@
-import { Layout } from "./components/Layout.jsx";
 import { WordList} from "./components/WordList.jsx";
 import { OptionsOfQuestion } from "./components/OptionsOfQuestion.jsx";
 import { LayoutContainer} from "./components/LayoutContainer.jsx";
