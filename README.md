@@ -1,4 +1,4 @@
-# vocabulary-builder-vite
+# vocabulary-builder
 React version of vocabulary builder. <br>
 Page deployed on Vercel: https://vocabulary-builder-vite.vercel.app/ <br>
 A simple multiple-choice game for spanish speakers that helps to improve the vocabulary. All the words were taken
