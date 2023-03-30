@@ -1,6 +1,6 @@
 # vocabulary-builder
 React version of vocabulary builder. <br>
-Page deployed on Vercel: https://vocabulary-builder-vite.vercel.app/ <br>
+Page deployed on Vercel: http://vocabulary-builder-react.vercel.app/ <br>
 A simple multiple-choice game for spanish speakers that helps to improve the vocabulary. All the words were taken
 from the pdf "the_oxford_3000" because i didn't find any other word list with those characteristics.  
 # how it works
