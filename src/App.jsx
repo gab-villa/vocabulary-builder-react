@@ -2,16 +2,18 @@ import { WordList} from "./components/WordList.jsx";
 import { OptionsOfQuestion } from "./components/OptionsOfQuestion.jsx";
 import { LayoutContainer} from "./components/LayoutContainer.jsx";
 import { LayoutRow} from "./components/LayoutRow.jsx";
+import { CurrentProgress } from "./components/ProgressBar";
+import * as Const from './Constants.jsx';
 
 // app should be used for auth and routing
 
 import React,{useState,useEffect} from 'react';
-const PATH_TO_WORDLIST = "WordList-21-03-2023.json";
-const TAM_WORDLIST = 10;
-const NUMBER_OF_OPTIONS = 3;
+import { ProgressBar } from "react-bootstrap";
+
 
 function App() {
   const [dataList, setDataList] = useState();
+  const [counterAns, setCounterAns] = useState(0);
 
   const handleOptClick = {};
   {
@@ -21,6 +23,8 @@ function App() {
       let temp = dataList.slice();
       temp.shift();
       setDataList(temp);
+
+      setCounterAns(counterAns+1);
     }
     handleOptClick.wrong = () =>
     {
@@ -49,7 +53,7 @@ function App() {
     }
     async function getData(dataList)
     {
-        const res = await fetch(PATH_TO_WORDLIST, {
+        const res = await fetch(Const.PATH_TO_WORDLIST, {
           headers : { 
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -57,11 +61,11 @@ function App() {
         });
         const data = await res.json();
 
-        const tamArrRand = TAM_WORDLIST * NUMBER_OF_OPTIONS;
+        const tamArrRand = Const.MAX_WORDLIST * Const.NUMBER_OF_OPTIONS;
         let arrRandomIndex = getArrOfRandomInt(tamArrRand,data.length-1);
         let arrTemp = [];
         
-        for(let i = 0;i < tamArrRand;i += NUMBER_OF_OPTIONS)
+        for(let i = 0;i < tamArrRand;i += Const.NUMBER_OF_OPTIONS)
         {	
           arrTemp.push({
             ans: data[arrRandomIndex[i]],
@@ -80,7 +84,11 @@ function App() {
   return (
     <LayoutContainer>
       <LayoutRow>
-        <WordList wordList={dataList.slice(0,3)}/>
+      <CurrentProgress curCount={counterAns}/>
+        <WordList wordList={dataList.slice(0,
+                  dataList.length < Const.TAM_WORDLIST ? 
+                  dataList.length : Const.TAM_WORDLIST
+                )}/>
       </LayoutRow>
       <LayoutRow>
         <OptionsOfQuestion optList={dataList[0]}

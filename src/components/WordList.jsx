@@ -1,14 +1,14 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import { WordItem } from "./WordItem.jsx";
-//import { useState } from "react";
 
 export const WordList = ({wordList}) =>
 {
+    const wengList = wordList.slice().reverse().map(word => 
+        <WordItem itemData={word.ans}/>
+    );
     return (<>
         <ListGroup className="text-center">
-            <WordItem itemData={wordList[2].ans}/>
-            <WordItem itemData={wordList[1].ans}/>
-            <WordItem itemData={wordList[0].ans}/>
+            {wengList}
         </ListGroup>
     </>);
 }

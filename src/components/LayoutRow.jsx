@@ -5,7 +5,7 @@ export const LayoutRow = ({children}) =>
 {
     return (
         <Row className = "justify-content-center align-items-center h-50">
-            <Col md="auto">
+            <Col sm="4">
                 {children}
             </Col>
         </Row>
