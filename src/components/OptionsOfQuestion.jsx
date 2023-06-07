@@ -37,13 +37,19 @@ export const OptionsOfQuestion = ({optList, onOptClick}) =>
 
         <Stack gap={2}>
             <Button variant="primary" onClick={optRandList[0].click}>
-                {optRandList[0].option.wspa}
+                <div className="lead">
+                    {optRandList[0].option.wspa}
+                </div>
             </Button>
             <Button variant="primary" onClick={optRandList[1].click}>
-                {optRandList[1].option.wspa}
+                <div className="lead">
+                    {optRandList[1].option.wspa}
+                </div>
             </Button>
             <Button variant="primary" onClick={optRandList[2].click}>
-                {optRandList[2].option.wspa}
+                <div className="lead">
+                    {optRandList[2].option.wspa}
+                </div>
             </Button>
         </Stack>
     </>);

@@ -9,7 +9,7 @@ export const WordList = ({wordList}) =>
 
     );
     return (<>
-        <ListGroup className="text-center">
+        <ListGroup className="text-center lead">
             {wengList}
         </ListGroup>
     </>);
