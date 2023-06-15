@@ -10,19 +10,16 @@ import * as Const from './Constants.jsx';
 import React,{useState,useEffect} from 'react';
 import { SuccessMsg } from "./components/SuccessMsg.jsx";
 
-
-
 function App() {
-  
   const [contErr, setContErr] = useState(0);
-  const [dataList, setDataList] = useState();
+  const [dataList, setDataList] = useState([]);
   const [contAns, setContAns] = useState(0);
 
   const handleOptClick = {};
   {
     handleOptClick.ans = () =>
     {
-      console.log("opc correcta");
+
       let temp = dataList.slice();
       temp.shift();
       setDataList(temp);
@@ -31,7 +28,6 @@ function App() {
     }
     handleOptClick.wrong = () =>
     {
-      console.log("opc equivocada");
       let temp = dataList.slice();
       let delElem = temp.shift();
       temp.push(delElem);
@@ -87,11 +83,8 @@ function App() {
   useEffect(() =>{
     getData();
   }, [])
-  if(!dataList || dataList.length == 0)
-  {
-    return null;
-  }
-  else if(contErr >= Const.MAX_CANT_ERRORES)
+  
+  if(contErr >= Const.MAX_CANT_ERRORES)
   {
     return (<>
       <FailMsg totalAns={contAns} handleRetry={handleRetry}/>
@@ -102,6 +95,10 @@ function App() {
     return (<>
       <SuccessMsg totalErr={contErr} handleRetry={handleRetry}/>
     </>);
+  }
+  else if(!dataList || dataList.length == 0)
+  {
+    return null;
   }
   return (
     <LayoutContainer>

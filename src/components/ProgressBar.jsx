@@ -11,7 +11,6 @@ export const CurrentProgress = ({curCount, contErr}) =>
       ];
 
     let constInc = MAX_PROGRESSBAR / MAX_WORDLIST; 
-    console.log(progStatusOpt[contErr]);
     return (
         <ProgressBar className="mb-2" variant = {progStatusOpt[contErr]} animated now={curCount*constInc} />
     );
